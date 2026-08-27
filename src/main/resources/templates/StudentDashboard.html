@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/css/StudentDashboard.css">
+</head>
+<body>
+
+<div class="dashboard-container">
+
+    <!-- ===== STUDENT PROFILE HEADER ===== -->
+    <div class="student-profile-header">
+        <div class="profile-info">
+            <div class="profile-avatar">00</div>
+            <div class="profile-details">
+                <h1><span id="profileName"></span></h1>
+                <div class="student-id">
+                    <i class="fas fa-id-card"></i>
+                    <span>Student ID: <span id="profileId"></span></span>
+                </div>
+                <div style="display: flex; gap: 0.8rem; margin-top: 0.3rem; flex-wrap: wrap;">
+                    <span id="profileEmail" style="font-size: 0.85rem; color: #4a5568;">
+                        <i class="fas fa-envelope" style="color: #667eea;"></i></span>
+                    <span id="profileNumber" style="font-size: 0.85rem; color: #4a5568;">
+                        <i class="fas fa-phone" style="color: #667eea;"></i></span>
+                    <span id="profileCourse" style="font-size: 0.85rem; color: #4a5568;">
+                        <i class="fas fa-graduation-cap" style="color: #667eea;"></i></span>
+                </div>
+            </div>
+        </div>
+        <div class="profile-actions">
+            <button class="btn btn-primary">
+                <i class="fas fa-edit"></i> Edit Profile
+            </button>
+            <button class="btn btn-outline">
+                <i class="fas fa-file-alt"></i> Report
+            </button>
+            <button class="btn btn-logout" id="btn-logOut">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+    </div>
+
+    <!-- ===== STATS GRID ===== -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon blue"><i class="fas fa-book"></i></div>
+            <div class="stat-number" id="EnrollCourse-Number">-</div>
+            <div class="stat-label">Enrolled Courses</div>
+            <span class="stat-change up"><i class="fas fa-arrow-up"></i> 2 new this semester</span>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon green"><i class="fas fa-trophy"></i></div>
+            <div class="stat-number">3.8</div>
+            <div class="stat-label">Current GPA</div>
+            <span class="stat-change up"><i class="fas fa-arrow-up"></i> 0.2 from last semester</span>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon orange"><i class="fas fa-clock"></i></div>
+            <div class="stat-number">12</div>
+            <div class="stat-label">Pending Assignments</div>
+            <span class="stat-change down"><i class="fas fa-arrow-down"></i> 3 overdue</span>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon purple"><i class="fas fa-calendar-check"></i></div>
+            <div class="stat-number">92%</div>
+            <div class="stat-label">Attendance Rate</div>
+            <span class="stat-change up"><i class="fas fa-arrow-up"></i> 5% from last month</span>
+        </div>
+    </div>
+
+    <!-- ===== MAIN GRID ===== -->
+    <div class="main-grid">
+
+        <!-- LEFT COLUMN -->
+        <div>
+            <!-- Course Progress -->
+            <div class="card" style="margin-bottom: 1.5rem;">
+                <div class="card-header">
+                    <h3><i class="fas fa-chart-line"></i> Enroll Course Progress</h3>
+                    <a href="#" class="view-all">View All →</a>
+                </div>
+                <div id="Enroll-course-div"></div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fas fa-history"></i> Recent Activity</h3>
+                    <a href="#" class="view-all">View All →</a>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="activity-content">
+                        <div class="activity-text">Completed assignment: <strong>Binary Trees</strong></div>
+                        <div class="activity-time"><i class="far fa-clock"></i> 2 hours ago</div>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon"><i class="fas fa-upload"></i></div>
+                    <div class="activity-content">
+                        <div class="activity-text">Submitted project: <strong>E-commerce Website</strong></div>
+                        <div class="activity-time"><i class="far fa-clock"></i> Yesterday at 3:30 PM</div>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon"><i class="fas fa-video"></i></div>
+                    <div class="activity-content">
+                        <div class="activity-text">Attended lecture: <strong>Database Normalization</strong></div>
+                        <div class="activity-time"><i class="far fa-clock"></i> 2 days ago</div>
+                    </div>
+                </div>
+
+                <div class="activity-item">
+                    <div class="activity-icon"><i class="fas fa-file-pdf"></i></div>
+                    <div class="activity-content">
+                        <div class="activity-text">Downloaded materials: <strong>ML Lecture Notes</strong></div>
+                        <div class="activity-time"><i class="far fa-clock"></i> 3 days ago</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div>
+            <!-- Upcoming Events -->
+            <div class="card" style="margin-bottom: 1.5rem;">
+                <div class="card-header">
+                    <h3><i class="fas fa-calendar-alt"></i> Upcoming Events</h3>
+                    <a href="#" class="view-all">View All →</a>
+                </div>
+
+                <div class="event-item" id="Event-div-body">
+
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem;">
+                    <button class="btn btn-primary">
+                        <i class="fas fa-upload"></i> Submit
+                    </button>
+                    <button type="button" class="btn btn-outline" id="addactivity">
+                        <i class="fas fa-plus"></i> Add Activity
+                    </button>
+                    <button class="btn btn-outline">
+                        <i class="fas fa-file-alt"></i> Report
+                    </button>
+                    <button class="btn btn-outline">
+                        <i class="fas fa-comment"></i> Message
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ===== TOAST MESSAGE ===== -->
+    <div id="toastMessage" style="position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(120px); background: #1a202c; color: white; padding: 0.8rem 2rem; border-radius: 60px; font-weight: 500; font-size: 0.95rem; box-shadow: 0 12px 28px -8px rgba(0,0,0,0.25); display: flex; align-items: center; gap: 12px; opacity: 0; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); pointer-events: none; z-index: 999; white-space: nowrap;">
+        <i class="fas fa-check-circle" id="toastIcon"></i>
+        <span id="toastText">Success!</span>
+    </div>
+</div>
+
+<!-- ===== ADD ACTIVITY MODAL ===== -->
+<div id="addActivityModal" class="modal-overlay">
+    <div class="modal-box">
+        <div class="modal-header">
+            <i class="fas fa-plus-circle" style="color: #667eea;"></i>
+            <h2>Add Activity</h2>
+            <p>Log your recent academic activity</p>
+        </div>
+        <form id="addActivityForm">
+            <div class="form-group">
+                <label for="activityType"><i class="fas fa-tag"></i> Activity Type</label>
+                <select id="activityType" required>
+                    <option value="">Select activity type</option>
+                    <option value="completed">✅ Completed Assignment</option>
+                    <option value="submitted">📤 Submitted Project</option>
+                    <option value="attended">📺 Attended Lecture</option>
+                    <option value="downloaded">📄 Downloaded Materials</option>
+                    <option value="exam">📝 Took Exam</option>
+                    <option value="quiz">🧠 Completed Quiz</option>
+                    <option value="project">💻 Project Work</option>
+                    <option value="other">📌 Other Activity</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="activityTitle"><i class="fas fa-heading"></i> Activity Title</label>
+                <input type="text" id="activityTitle" placeholder="e.g., Binary Trees Assignment" required>
+            </div>
+
+            <div class="form-group">
+                <label for="activityDescription"><i class="fas fa-align-left"></i> Description (Optional)</label>
+                <textarea id="activityDescription" rows="3" placeholder="Add more details about this activity..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="activityDate"><i class="fas fa-calendar"></i> Date & Time</label>
+                <input type="datetime-local" id="activityDate" required>
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="cancel-btn" id="closeActivityBtn">Cancel</button>
+                <button type="submit" class="send-btn" id="addActivityBtn">
+                    <i class="fas fa-plus-circle"></i> Add Activity
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="/js/StudentDashboard.js"></script>
+</body>
+</html>

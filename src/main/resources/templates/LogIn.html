@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/css/LogIn.css">
+    <style>
+        #T0ast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 14px 20px;
+            background: #fff5f5;
+            border-radius: 12px;
+            border-left: 5px solid #e53e3e;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            font-size: 14px;
+            font-weight: 500;
+            color: #2d3748;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            z-index: 99999;
+            min-width: 280px;
+            max-width: 450px;
+            transform: translateX(100px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            pointer-events: none;
+        }
+
+        /* Show Toast */
+        #T0ast.show {
+            transform: translateX(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Toast Types */
+        #T0ast.success {
+            background: #f0fff4;
+            border-left-color: #38a169;
+        }
+
+        #T0ast.error {
+            background: #fff5f5;
+            border-left-color: #e53e3e;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== LOGIN CARD ===== -->
+<div class="login-card">
+    <div class="login-header">
+        <div class="logo">
+            <i class="fas fa-graduation-cap"></i>
+        </div>
+        <h1>Gik's INDIA</h1>
+    </div>
+
+    <form id="loginForm">
+        <!-- Email -->
+        <div class="form-group">
+            <label for="login-email"><i class="fas fa-envelope" style="margin-right: 6px;"></i> Email Address</label>
+            <div class="input-wrapper">
+                <i class="fas fa-envelope"></i>
+                <input type="email" id="login-email" placeholder="student@example.com" required>
+            </div>
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+            <label for="password"><i class="fas fa-lock" style="margin-right: 6px;"></i> Password</label>
+            <div class="input-wrapper">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="password" placeholder="Enter your password">
+            </div>
+        </div>
+
+        <!-- Options -->
+        <div class="options-row">
+            <label class="remember-me">
+                <input type="checkbox" id="rememberMe">
+                Remember me
+            </label>
+            <a class="forgot-password">
+                <i class="fas fa-key" style="margin-right: 4px;"></i> Forgot Password?
+            </a>
+            <div class="login-link">
+                Create an account? <a href="/Registration">Sign Up here</a>
+            </div>
+
+        </div>
+        <div class="loader" id="loader1"></div>
+
+        <!-- Login Button -->
+        <button type="button" class="login-btn" id="loginBtn">
+            <i class="fas fa-sign-in-alt"></i> Sign In
+        </button>
+    </form>
+</div>
+<div id="T0ast"></div>
+<!-- ===== OVERLAY (blur background + dialog) ===== -->
+<div class="overlay" id="overlay">
+    <div class="dialog-box">
+        <!-- Close button -->
+        <button class="close-dialog" id="closeDialogBtn">&times;</button>
+
+        <h3>Reset Password</h3>
+        <p class="sub">Enter your email and set a new password</p>
+
+        <div class="input-group">
+            <label>Email Address</label>
+            <input type="email" id="resetEmail" placeholder="student@example.com" />
+        </div>
+
+        <div class="input-group">
+            <label>New Password</label>
+            <input type="password" id="newPassword" placeholder="Enter new password" />
+        </div>
+
+        <div class="input-group">
+            <label>Confirm New Password</label>
+            <input type="text" id="confirmnewPassword" placeholder="Re-enter new password" />
+        </div>
+        <!-- Loader (reloader) -->
+        <div class="loader" id="loader2"></div>
+        <button type="button" class="update-btn" id="updateBtn">Update</button>
+    </div>
+</div>
+<script src="/js/LogIn.js"></script>
+</body>
+</html>

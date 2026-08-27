@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/css/Dashboard.css">
+</head>
+<body>
+<div class="app-wrapper">
+    <div class="dashboard">
+        <!-- Header -->
+        <div class="dashboard-header">
+            <div class="header-left">
+                <div class="header-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div>
+                    <h1>Admin Dashboard</h1>
+                    <p class="header-subtitle">Welcome back, Admin! <span id="currentTime"></span></p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <div class="logout-box">
+                    <button type="button" id="log-out" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+                <button class="btn-primary" onclick="showQuickAdd()">
+                    <i class="fas fa-plus"></i> Quick Add
+                </button>
+                <div class="notification-badge" onclick="toggleNotifications()">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">8</span>
+                    <div class="notification-dropdown" id="notificationDropdown">
+                        <div class="notification-item">
+                            <i class="fas fa-user-plus"></i>
+                            <span>5 new students enrolled</span>
+                            <small>2 min ago</small>
+                        </div>
+                        <div class="notification-item">
+                            <i class="fas fa-calendar-check"></i>
+                            <span>Exam schedule updated</span>
+                            <small>15 min ago</small>
+                        </div>
+                        <div class="notification-item">
+                            <i class="fas fa-trophy"></i>
+                            <span>Student of the month announced</span>
+                            <small>1 hour ago</small>
+                        </div>
+                        <div class="notification-item">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>3 pending fee submissions</span>
+                            <small>2 hours ago</small>
+                        </div>
+                        <div class="notification-view-all">View All Notifications</div>
+                    </div>
+                </div>
+                <div class="avatar">A</div>
+            </div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="stats-grid">
+            <div class="stat-card highlight">
+                <div class="stat-icon"><i class="fas fa-users"></i></div>
+                <div class="stat-info">
+                    <span class="stat-label">Total Students</span>
+                    <span class="stat-number">1,283</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="background: #e3f0fc; color: #1a73e8;"><i class="fas fa-chalkboard-teacher"></i></div>
+                <div class="stat-info">
+                    <span class="stat-label">Teachers</span>
+                    <span class="stat-number">48</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="background: #fef3e2; color: #e67e22;"><i class="fas fa-book-open"></i></div>
+                <div class="stat-info">
+                    <span class="stat-label">Courses</span>
+                    <span class="stat-number">24</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="background: #e8f5e9; color: #27ae60;"><i class="fas fa-building"></i></div>
+                <div class="stat-info">
+                    <span class="stat-label">Departments</span>
+                    <span class="stat-number">12</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon" style="background: #fce4ec; color: #c0392b;"><i class="fas fa-calendar-check"></i></div>
+                <div class="stat-info">
+                    <span class="stat-label">Today's Attendance</span>
+                    <span class="stat-number" style="font-size: small">Comming Soon...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Grid -->
+        <div class="main-grid">
+            <!-- Left Column -->
+            <div class="left-column">
+                <!-- Action Tabs -->
+                <div class="action-tabs">
+                    <button class="tab active" onclick="switchTab('students')">
+                        <i class="fas fa-user-graduate"></i><span>Students</span>
+                    </button>
+                    <button class="tab" onclick="switchTab('courses')">
+                        <i class="fas fa-book-open"></i><span>Courses</span>
+                    </button>
+                    <button class="tab" onclick="switchTab('teachers')">
+                        <i class="fas fa-chalkboard-teacher"></i><span>Teachers</span>
+                    </button>
+                    <button class="tab" onclick="switchTab('exams')">
+                        <i class="fas fa-pencil-alt"></i><span>Exams</span>
+                    </button>
+                    <button class="tab" onclick="switchTab('finance')">
+                        <i class="fas fa-coins"></i><span>Finance</span>
+                    </button>
+                    <button class="tab" onclick="switchTab('reports')">
+                        <i class="fas fa-chart-bar"></i><span>Reports</span>
+                    </button>
+                </div>
+
+                <!-- Dynamic Content Section -->
+                <div id="dynamicContent">
+                    <!-- Students Section (Default Active) -->
+                    <div id="studentsSection" class="section-content active">
+                        <div class="quick-actions">
+                            <div class="quick-action-item" onclick="openModal('student')">
+                                <i class="fas fa-user-plus"></i>
+                                <span>Add Student</span>
+                            </div>
+                            <div class="quick-action-item disabled">
+                                <i class="fas fa-file-import"></i>
+                                <span>Import Students</span>
+                            </div>
+                            <div class="quick-action-item disabled">
+                                <i class="fas fa-users-cog"></i>
+                                <span>Bulk Operations</span>
+                            </div>
+                            <div class="quick-action-item disabled">
+                                <i class="fas fa-file-alt"></i>
+                                <span>Generate Report</span>
+                            </div>
+                            <div class="quick-action-item disabled">
+                                <i class="fas fa-bell"></i>
+                                <span>Send Notice</span>
+                            </div>
+                            <div class="quick-action-item disabled">
+                                <i class="fas fa-file-export"></i>
+                                <span>Export Data</span>
+                            </div>
+                        </div>
+
+                        <div class="section-divider">
+                            <i class="fas fa-user-graduate"></i>
+                            <span>Student Records</span>
+                            <span class="line"></span>
+                            <div class="divider-actions">
+                                <button class="filter-btn"><i class="fas fa-filter"></i> Filter</button>
+                                <button class="filter-btn"><i class="fas fa-download"></i> Export</button>
+                            </div>
+                        </div>
+
+                        <div class="table-wrap">
+                            <table class="student-table">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Course</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th colspan="2">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody id="studentDetails">
+<!--                                Record Add Dynamically From the JS-->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Courses Section -->
+                    <div id="coursesSection" class="section-content" style="display:none;">
+                        <div class="quick-actions">
+                            <div class="quick-action-item" onclick="openModal('course')">
+                                <i class="fas fa-plus-circle"></i>
+                                <span>Add Course</span>
+                            </div>
+                            <div class="quick-action-item disabled">
+                                <i class="fas fa-user-plus"></i>
+                                <span>Assign Teacher</span>
+                            </div>
+                            <div class="quick-action-item disabled">
+                                <i class="fas fa-clock"></i>
+                                <span>Set Schedule</span>
+                            </div>
+                            <div class="quick-action-item disabled">
+                                <i class="fas fa-link"></i>
+                                <span>Prerequisites</span>
+                            </div>
+                            <div class="quick-action-item disabled">
+                                <i class="fas fa-archive"></i>
+                                <span>Archive Course</span>
+                            </div>
+                            <div class="quick-action-item disabled">
+                                <i class="fas fa-file-alt"></i>
+                                <span>Course Report</span>
+                            </div>
+                        </div>
+
+                        <div class="section-divider">
+                            <i class="fas fa-book-open"></i>
+                            <span>Course Management</span>
+                            <span class="line"></span>
+                            <div class="divider-actions">
+                                <button class="filter-btn"><i class="fas fa-filter"></i> Filter</button>
+                                <button class="filter-btn"><i class="fas fa-download"></i> Export</button>
+                            </div>
+                        </div>
+
+                        <div class="table-wrap">
+                            <table class="student-table">
+                                <thead>
+                                <tr>
+                                    <th>Course Code</th>
+                                    <th>Subject Name</th>
+                                    <th>Department</th>
+                                    <th>Course Type</th>
+                                    <th>Teacher</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody id="courseDetails">
+<!--                        Record Add Dynamically From the JS-->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Teachers Section -->
+                    <div id="teachersSection" class="section-content" style="display:none;">
+                        <div class="quick-actions">
+                            <div class="quick-action-item" onclick="openModal('teacher')">
+                                <i class="fas fa-user-tie"></i>
+                                <span>Add Teacher</span>
+                            </div>
+                            <div class="quick-action-item disabled">
+                                <i class="fas fa-book"></i>
+                                <span>Assign Course</span>
+                            </div>
+                            <div class="quick-action-item disabled">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>Set Schedule</span>
+                            </div>
+                            <div class="quick-action-item" onclick="openModal('leave')">
+                                <i class="fas fa-calendar-times"></i>
+                                <span>Leave Request</span>
+                            </div>
+                            <div class="quick-action-item disabled">
+                                <i class="fas fa-file-alt"></i>
+                                <span>Teacher Report</span>
+                            </div>
+                            <div class="quick-action-item disabled">
+                                <i class="fas fa-bell"></i>
+                                <span>Send Notice</span>
+                            </div>
+                        </div>
+
+                        <div class="section-divider">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <span>Faculty Management</span>
+                            <span class="line"></span>
+                            <div class="divider-actions">
+                                <button class="filter-btn"><i class="fas fa-filter"></i> Filter</button>
+                                <button class="filter-btn"><i class="fas fa-download"></i> Export</button>
+                            </div>
+                        </div>
+
+                        <div class="table-wrap">
+                            <table class="student-table">
+                                <thead>
+                                <tr>
+                                    <th>Teacher ID</th>
+                                    <th>Name</th>
+                                    <th>Department</th>
+                                    <th>Specialization</th>
+                                    <th>Courses</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>T001</td>
+                                    <td>Dr. Sarah Smith</td>
+                                    <td>Computer Science</td>
+                                    <td>AI & ML</td>
+                                    <td>3</td>
+                                    <td><span class="status-badge active">Active</span></td>
+                                    <td>
+                                        <button class="action-btn view-btn" onclick="editTeacher('T001')"><i class="fas fa-edit"></i></button>
+                                        <button class="action-btn delete-btn" onclick="deleteTeacher('T001')"><i class="fas fa-trash-alt"></i></button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Exams Section -->
+                    <div id="examsSection" class="section-content" style="display:none;">
+                        <div class="quick-actions">
+                            <div class="quick-action-item" onclick="openModal('exam')">
+                                <i class="fas fa-calendar-plus"></i>
+                                <span>Schedule Exam</span>
+                            </div>
+                            <div class="quick-action-item disabled">
+                                <i class="fas fa-clock"></i>
+                                <span>Postpone Exam</span>
+                            </div>
+                            <div class="quick-action-item disabled">
+                                <i class="fas fa-times-circle"></i>
+                                <span>Cancel Exam</span>
+                            </div>
+                            <div class="quick-action-item disabled">
+                                <i class="fas fa-exchange-alt"></i>
+                                <span>Reschedule</span>
+                            </div>
+                            <div class="quick-action-item disabled">
+                                <i class="fas fa-trophy"></i>
+                                <span>Publish Results</span>
+                            </div>
+                            <div class="quick-action-item" onclick="openModal('exam-schedule')">
+                                <i class="fas fa-list"></i>
+                                <span>View Schedule</span>
+                            </div>
+                        </div>
+
+                        <div class="section-divider disabled">
+                            <i class="fas fa-pencil-alt"></i>
+                            <span>Exam Management</span>
+                            <span class="line"></span>
+                            <div class="divider-actions">
+                                <button class="filter-btn"><i class="fas fa-filter"></i> Filter</button>
+                                <button class="filter-btn"><i class="fas fa-download"></i> Export</button>
+                            </div>
+                        </div>
+
+                        <div class="table-wrap disabled">
+                            <table class="student-table">
+                                <thead>
+                                <tr>
+                                    <th>Exam ID</th>
+                                    <th>Course</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Venue</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>E001</td>
+                                    <td>CS101</td>
+                                    <td>2026-08-25</td>
+                                    <td>10:00 AM</td>
+                                    <td>Hall A</td>
+                                    <td><span class="status-badge active">Scheduled</span></td>
+                                    <td>
+                                        <button class="action-btn view-btn"><i class="fas fa-edit"></i></button>
+                                        <button class="action-btn delete-btn"><i class="fas fa-clock"></i></button>
+                                        <button class="action-btn" style="color: #c0392b;"><i class="fas fa-times"></i></button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Finance Section -->
+                    <div id="financeSection" class="section-content disabled" style="display:none;">
+                        <div class="quick-actions">
+                            <div class="quick-action-item">
+                                <i class="fas fa-money-bill-wave"></i>
+                                <span>Fee Collection</span>
+                            </div>
+                            <div class="quick-action-item">
+                                <i class="fas fa-gift"></i>
+                                <span>Scholarships</span>
+                            </div>
+                            <div class="quick-action-item">
+                                <i class="fas fa-credit-card"></i>
+                                <span>Expenses</span>
+                            </div>
+                            <div class="quick-action-item">
+                                <i class="fas fa-chart-pie"></i>
+                                <span>Budget</span>
+                            </div>
+                            <div class="quick-action-item">
+                                <i class="fas fa-file-alt"></i>
+                                <span>Financial Report</span>
+                            </div>
+                            <div class="quick-action-item">
+                                <i class="fas fa-file-invoice"></i>
+                                <span>Generate Invoice</span>
+                            </div>
+                        </div>
+
+                        <div class="section-divider">
+                            <i class="fas fa-coins"></i>
+                            <span>Financial Management</span>
+                            <span class="line"></span>
+                            <div class="divider-actions">
+                                <button class="filter-btn"><i class="fas fa-filter"></i> Filter</button>
+                                <button class="filter-btn"><i class="fas fa-download"></i> Export</button>
+                            </div>
+                        </div>
+
+                        <div class="table-wrap">
+                            <table class="student-table">
+                                <thead>
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Course</th>
+                                    <th>Fee Amount</th>
+                                    <th>Paid</th>
+                                    <th>Due Date</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>John Doe</td>
+                                    <td>CS101</td>
+                                    <td>$2,500</td>
+                                    <td>$2,500</td>
+                                    <td>2026-08-15</td>
+                                    <td><span class="status-badge active">Paid</span></td>
+                                    <td>
+                                        <button class="action-btn view-btn" onclick="viewInvoice('1')"><i class="fas fa-file-invoice"></i></button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Reports Section -->
+                    <div id="reportsSection" class="section-content disabled" style="display:none;">
+                        <div class="quick-actions">
+                            <div class="quick-action-item">
+                                <i class="fas fa-user-graduate"></i>
+                                <span>Student Report</span>
+                            </div>
+                            <div class="quick-action-item">
+                                <i class="fas fa-book-open"></i>
+                                <span>Course Report</span>
+                            </div>
+                            <div class="quick-action-item">
+                                <i class="fas fa-calendar-check"></i>
+                                <span>Attendance Report</span>
+                            </div>
+                            <div class="quick-action-item">
+                                <i class="fas fa-pencil-alt"></i>
+                                <span>Exam Report</span>
+                            </div>
+                            <div class="quick-action-item">
+                                <i class="fas fa-coins"></i>
+                                <span>Financial Report</span>
+                            </div>
+                            <div class="quick-action-item">
+                                <i class="fas fa-chart-line"></i>
+                                <span>Performance Report</span>
+                            </div>
+                        </div>
+
+                        <div class="section-divider">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Report Generation</span>
+                            <span class="line"></span>
+                            <div class="divider-actions">
+                                <button class="filter-btn"><i class="fas fa-filter"></i> Filter</button>
+                                <button class="filter-btn"><i class="fas fa-download"></i> Export</button>
+                            </div>
+                        </div>
+
+                        <div class="report-cards">
+                            <div class="report-card">
+                                <i class="fas fa-user-graduate"></i>
+                                <h4>Student Report</h4>
+                                <p>View enrollment statistics, demographics, and trends</p>
+                            </div>
+                            <div class="report-card">
+                                <i class="fas fa-calendar-check"></i>
+                                <h4>Attendance Report</h4>
+                                <p>Track attendance patterns and identify issues</p>
+                            </div>
+                            <div class="report-card">
+                                <i class="fas fa-pencil-alt"></i>
+                                <h4>Exam Report</h4>
+                                <p>Analyze exam performance and results</p>
+                            </div>
+                            <div class="report-card">
+                                <i class="fas fa-coins"></i>
+                                <h4>Financial Report</h4>
+                                <p>View revenue, expenses, and budget analysis</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="right-column">
+                <!-- Quick Stats Cards -->
+                <div class="quick-stats disabled">
+                    <div class="mini-stat" onclick="showDetails('new')">
+                        <i class="fas fa-user-plus" style="color: #1a73e8;"></i>
+                        <span>New Today</span>
+                        <strong>12</strong>
+                    </div>
+                    <div class="mini-stat" onclick="showDetails('pending')">
+                        <i class="fas fa-clock" style="color: #e67e22;"></i>
+                        <span>Pending</span>
+                        <strong>23</strong>
+                    </div>
+                    <div class="mini-stat" onclick="showDetails('completed')">
+                        <i class="fas fa-check-circle" style="color: #27ae60;"></i>
+                        <span>Completed</span>
+                        <strong>156</strong>
+                    </div>
+                    <div class="mini-stat" onclick="showDetails('alerts')">
+                        <i class="fas fa-exclamation-circle" style="color: #c0392b;"></i>
+                        <span>Alerts</span>
+                        <strong>5</strong>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="activity-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-clock" style="color: #1a5f82;"></i> Recent Activity</h3>
+                        <a href="#" onclick="viewAllActivity()">View All</a>
+                    </div>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon" style="background: #e3f0fc;"><i class="fas fa-user-plus" style="color: #1a73e8;"></i></div>
+                            <div class="activity-content">
+                                <p><strong>John Doe</strong> enrolled in Computer Science</p>
+                                <span class="activity-time">2 min ago</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon" style="background: #fef3e2;"><i class="fas fa-edit" style="color: #e67e22;"></i></div>
+                            <div class="activity-content">
+                                <p><strong>Sarah Smith</strong> updated profile</p>
+                                <span class="activity-time">15 min ago</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon" style="background: #e8f5e9;"><i class="fas fa-calendar-check" style="color: #27ae60;"></i></div>
+                            <div class="activity-content">
+                                <p>New exam schedule added for <strong>Data Science</strong></p>
+                                <span class="activity-time">1 hour ago</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon" style="background: #fce4ec;"><i class="fas fa-graduation-cap" style="color: #c0392b;"></i></div>
+                            <div class="activity-content">
+                                <p><strong>5 students</strong> graduated this semester</p>
+                                <span class="activity-time">2 hours ago</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon" style="background: #f3e5f5;"><i class="fas fa-trophy" style="color: #8e24aa;"></i></div>
+                            <div class="activity-content">
+                                <p><strong>Student of the Month:</strong> Emily Parker</p>
+                                <span class="activity-time">3 hours ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upcoming Events -->
+                <div class="events-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-calendar-alt" style="color: #1a5f82;"></i> Upcoming Events</h3>
+                        <a href="#" onclick="viewAllEvents()">View All</a>
+                    </div>
+                    <div class="event-list">
+                        <div class="event-item">
+                            <div class="event-date">
+                                <span class="event-day">25</span>
+                                <span class="event-month">AUG</span>
+                            </div>
+                            <div class="event-details">
+                                <p class="event-title">Final Exam - Computer Science</p>
+                                <span class="event-time"><i class="far fa-clock"></i> 10:00 AM</span>
+                            </div>
+                            <span class="event-badge">Exam</span>
+                        </div>
+                        <div class="event-item">
+                            <div class="event-date">
+                                <span class="event-day">27</span>
+                                <span class="event-month">AUG</span>
+                            </div>
+                            <div class="event-details">
+                                <p class="event-title">Staff Meeting</p>
+                                <span class="event-time"><i class="far fa-clock"></i> 2:00 PM</span>
+                            </div>
+                            <span class="event-badge" style="background: #fef3e2; color: #e67e22;">Meeting</span>
+                        </div>
+                        <div class="event-item">
+                            <div class="event-date">
+                                <span class="event-day">30</span>
+                                <span class="event-month">AUG</span>
+                            </div>
+                            <div class="event-details">
+                                <p class="event-title">Workshop: AI in Education</p>
+                                <span class="event-time"><i class="far fa-clock"></i> 9:30 AM</span>
+                            </div>
+                            <span class="event-badge" style="background: #e3f0fc; color: #1a73e8;">Workshop</span>
+                        </div>
+                        <div class="event-item">
+                            <div class="event-date">
+                                <span class="event-day">01</span>
+                                <span class="event-month">SEP</span>
+                            </div>
+                            <div class="event-details">
+                                <p class="event-title">New Semester Orientation</p>
+                                <span class="event-time"><i class="far fa-clock"></i> 10:00 AM</span>
+                            </div>
+                            <span class="event-badge" style="background: #e8f5e9; color: #27ae60;">Orientation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fee Status -->
+                <div class="fee-card disabled">
+                    <div class="card-header">
+                        <h3><i class="fas fa-money-bill-wave" style="color: #1a5f82;"></i> Fee Status</h3>
+                        <a href="#" onclick="viewAllFees()">View All</a>
+                    </div>
+                    <div class="fee-stats">
+                        <div class="fee-item">
+                            <span class="fee-label">Paid</span>
+                            <div class="fee-bar"><div class="fee-progress" style="width: 75%;"></div></div>
+                            <span class="fee-percent">75%</span>
+                        </div>
+                        <div class="fee-item">
+                            <span class="fee-label">Pending</span>
+                            <div class="fee-bar"><div class="fee-progress" style="width: 20%; background: #e67e22;"></div></div>
+                            <span class="fee-percent">20%</span>
+                        </div>
+                        <div class="fee-item">
+                            <span class="fee-label">Overdue</span>
+                            <div class="fee-bar"><div class="fee-progress" style="width: 5%; background: #c0392b;"></div></div>
+                            <span class="fee-percent">5%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="dashboard-footer">
+            <div class="footer-left">
+                <span><i class="fas fa-clock"></i> Last updated: <span id="lastUpdate">Today at 10:30 AM</span></span>
+            </div>
+            <div class="footer-right">
+                <span><i class="fas fa-shield-alt"></i> Secure Connection</span>
+                <span><i class="fas fa-database"></i> Backup: <span id="backupStatus">Auto</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- News Ticker -->
+    <div class="news-ticker" id="newsTicker">
+        <div class="news-header">
+            <i class="fas fa-newspaper"></i>
+            <span>LIVE NEWS</span>
+            <span class="news-dot"></span>
+        </div>
+        <div class="news-content" id="newsContent">
+            <span class="news-text" id="newsText">Loading latest news...</span>
+        </div>
+        <button class="news-toggle" onclick="toggleNews()">
+            <i class="fas fa-chevron-up" id="newsIcon"></i>
+        </button>
+    </div>
+</div>
+
+<!-- Quick Add Modal -->
+<div class="modal" id="quickModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Quick Add</h3>
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+        </div>
+        <div class="modal-body">
+            <div class="modal-grid">
+                <div class="modal-item" onclick="openModal('student')">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Add Student</span>
+                </div>
+                <div class="modal-item" onclick="openModal('course')">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>Add Course</span>
+                </div>
+                <div class="modal-item" onclick="openModal('teacher')">
+                    <i class="fas fa-user-tie"></i>
+                    <span>Add Teacher</span>
+                </div>
+                <div class="modal-item" onclick="openModal('exam')">
+                    <i class="fas fa-calendar-plus"></i>
+                    <span>Schedule Exam</span>
+                </div>
+                <div class="modal-item disabled">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <span>Fee Collection</span>
+                </div>
+                <div class="modal-item" onclick="openModal('timetable')">
+                    <i class="fas fa-clock"></i>
+                    <span>Create Timetable</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/Dashboard.js"></script>
+<script>
+    function updateTime() {
+        const now = new Date();
+        const currentTime = document.getElementById("currentTime");
+        const lastUpdate = document.getElementById("lastUpdate");
+        if (currentTime) {
+            currentTime.textContent = now.toLocaleTimeString();
+        }
+        if (lastUpdate) {
+            lastUpdate.textContent =
+                `Today at ${now.toLocaleTimeString("en-US", {
+                    hour: "numeric",
+                    minute: "2-digit"
+                })}`;
+        }
+    }
+    updateTime();
+
+    setInterval(updateTime, 1000);
+</script>
+</body>
+</html>

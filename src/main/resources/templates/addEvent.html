@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Upcoming Event</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/css/addEvent.css">
+</head>
+<body>
+
+<div class="page-container">
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="icon-wrapper">
+            <i class="fas fa-calendar-plus"></i>
+        </div>
+        <div>
+            <h1>Add Upcoming Event</h1>
+            <p><i class="fas fa-database" style="color: #667eea;"></i> Store event details in the database</p>
+        </div>
+    </div>
+
+    <!-- Event Form -->
+    <form id="eventForm">
+        <!-- Event Title -->
+        <div class="form-group">
+            <label for="eventTitle">
+                <i class="fas fa-heading"></i> Event Title <span class="required">*</span>
+            </label>
+            <input type="text" id="eventTitle" name="title" placeholder="e.g., Data Structures - Final Exam" required>
+            <div class="help-text">
+                <i class="fas fa-info-circle"></i> Enter a clear and descriptive title
+            </div>
+        </div>
+
+        <!-- Event Description -->
+        <div class="form-group">
+            <label for="eventDescription">
+                <i class="fas fa-align-left"></i> Description
+            </label>
+            <textarea id="eventDescription" name="description" placeholder="Provide details about this event (optional)"></textarea>
+        </div>
+
+        <!-- Date and Time Row -->
+        <div class="form-row">
+            <div class="form-group">
+                <label for="eventDate">
+                    <i class="fas fa-calendar-day"></i> Event Date <span class="required">*</span>
+                </label>
+                <input type="date" id="eventDate" name="date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="eventTime">
+                    <i class="fas fa-clock"></i> Event Time <span class="required">*</span>
+                </label>
+                <input type="time" id="eventTime" name="time"  required>
+            </div>
+        </div>
+
+        <!-- Course -->
+        <div class="form-group">
+            <label for="eventCourse"><i class="fas fa-laptop-code"></i> Course</label>
+            <select id="eventCourse">
+                <option value="Computer Science" selected>Computer Science</option>
+                <option value="Information Technology">Information Technology</option>
+                <option value="Software Engineering">Software Engineering</option>
+                <option value="Data Science">Data Science</option>
+                <option value="Cybersecurity">Cybersecurity</option>
+                <option value="Artificial Intelligence">Artificial Intelligence</option>
+                <option value="Business Administration">Business Administration</option>
+                <option value="Digital Media">Digital Media</option>
+                <option value="All Course">All Course</option>
+            </select>
+        </div>
+
+        <!-- Event Type -->
+        <div class="form-group">
+            <label for="eventType">
+                <i class="fas fa-tag"></i> Event Type <span class="required">*</span>
+            </label>
+            <select id="eventType" name="type" required>
+                <option value="">Select event type</option>
+                <option value="exam"> Exam</option>
+                <option value="assignment"> Guest Lecture</option>
+                <option value="project"> Career Guidance</option>
+                <option value="quiz">Hackathon</option>
+                <option value="lecture"> Conference</option>
+                <option value="workshop"> Workshop</option>
+                <option value="seminar"> Seminar</option>
+                <option value="meeting"> Bootcamp</option>
+                <option value="deadline"> Project Exhibition</option>
+                <option value="other"> Other</option>
+            </select>
+        </div>
+
+        <!-- Priority -->
+        <div class="form-group">
+            <label>
+                <i class="fas fa-flag"></i> Priority Level <span class="required">*</span>
+            </label>
+            <div class="priority-options">
+                <label>
+                    <input type="radio" name="priority" value="high">
+                    <span>🔴 High</span>
+                </label>
+                <label>
+                    <input type="radio" name="priority" value="medium" checked>
+                    <span>🟡 Medium</span>
+                </label>
+                <label>
+                    <input type="radio" name="priority" value="low">
+                    <span>🟢 Low</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Status -->
+        <div class="form-group">
+            <label for="eventStatus">
+                <i class="fas fa-circle"></i> Status <span class="required">*</span>
+            </label>
+            <select id="eventStatus" name="status" required>
+                <option value="upcoming">Upcoming</option>
+                <option value="in-progress">Rescheduled</option>
+                <option value="completed">Completed</option>
+                <option value="cancelled">Cancelled</option>
+                <option value="postponed">Registration Open</option>
+            </select>
+        </div>
+
+        <!-- Additional Notes -->
+        <div class="form-group">
+            <label for="eventNotes">
+                <i class="fas fa-sticky-note"></i> Additional Notes
+            </label>
+            <textarea id="eventNotes" name="notes" rows="2" placeholder="Any additional information about this event"></textarea>
+        </div>
+
+        <!-- Form Actions -->
+        <div class="form-actions">
+            <button type="reset" class="btn-reset">
+                <i class="fas fa-undo-alt"></i> Reset
+            </button>
+            <button type="button" class="btn-submit" id="eventSubmit">
+                <i class="fas fa-database"></i>Save Event
+            </button>
+        </div>
+    </form>
+</div>
+<script src="/js/addEvent.js"></script>
+</body>
+</html>

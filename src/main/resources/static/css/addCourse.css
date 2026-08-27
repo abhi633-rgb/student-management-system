@@ -1,0 +1,317 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f0f4f8;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    padding: 2rem;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Header */
+.page-header {
+    margin-bottom: 2rem;
+}
+
+.page-header h1 {
+    font-size: 2rem;
+    color: #1a202c;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.page-header h1 i {
+    color: #667eea;
+}
+
+/* Add Course Form */
+.add-course-form {
+    background: white;
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    margin-bottom: 2rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+}
+.course-span{
+    font-size: 10px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: #2d3748;
+    margin-bottom: 0.4rem;
+}
+
+.form-group label i {
+    color: #667eea;
+    margin-right: 0.4rem;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    transition: 0.2s;
+    background: #f7fafc;
+    color: #1a202c;
+    outline: none;
+    font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #667eea;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.12);
+}
+
+.form-group input::placeholder {
+    color: #a0aec0;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    justify-content: flex-end;
+}
+
+.form-actions button {
+    padding: 0.7rem 2rem;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: 0.2s;
+    border: none;
+}
+
+.form-actions .btn-cancel {
+    background: #f7fafc;
+    color: #4a5568;
+    border: 2px solid #e2e8f0;
+}
+
+.form-actions .btn-cancel:hover {
+    background: #edf2f7;
+}
+
+.form-actions .btn-submit {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.form-actions .btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.btn-update {
+    background: #ebf8ff;
+    color: #3182ce;
+}
+
+.btn-update:hover {
+    background: #bee3f8;
+}
+
+.btn-delete {
+    background: #fff5f5;
+    color: #e53e3e;
+}
+
+.btn-delete:hover {
+    background: #fed7d7;
+}
+
+/* Update Progress Panel */
+.update-panel {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    margin-top: 1.5rem;
+    border: 2px solid #667eea;
+}
+
+.update-panel .panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.update-panel .panel-header h3 {
+    font-size: 1.2rem;
+    color: #1a202c;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.update-panel .panel-header h3 i {
+    color: #667eea;
+}
+
+.update-panel .panel-header .close-panel {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #a0aec0;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.update-panel .panel-header .close-panel:hover {
+    color: #4a5568;
+    transform: rotate(90deg);
+}
+
+.update-panel .panel-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.update-panel .course-info-display {
+    text-align: center;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #f7fafc;
+}
+
+.update-panel .course-info-display .course-name-display {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1a202c;
+}
+
+.update-panel .course-info-display .course-dept-display {
+    font-size: 0.9rem;
+    color: #718096;
+    margin-top: 0.2rem;
+}
+
+.update-panel .current-progress {
+    text-align: center;
+}
+
+.update-panel .current-progress .label {
+    font-size: 0.9rem;
+    color: #718096;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.update-panel .current-progress .big-progress-bar {
+    width: 100%;
+    height: 14px;
+    background: #edf2f7;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.update-panel .current-progress .big-progress-bar .big-fill {
+    height: 100%;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.update-panel .current-progress .progress-percent {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin-top: 0.5rem;
+}
+
+.update-panel .update-controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-top: 1rem;
+    border-top: 2px solid #f7fafc;
+}
+
+.update-panel .update-controls input[type="range"] {
+    width: 280px;
+    height: 6px;
+    -webkit-appearance: none;
+    background: #edf2f7;
+    border-radius: 10px;
+    outline: none;
+}
+
+.update-panel .update-controls input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.update-panel .update-controls input[type="number"] {
+    width: 80px;
+    padding: 0.5rem 0.5rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 1rem;
+    text-align: center;
+    font-weight: 600;
+    outline: none;
+    background: white;
+}
+
+.update-panel .update-controls input[type="number"]:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.12);
+}
+
+.update-panel .update-controls .btn-save-progress {
+    padding: 0.7rem 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 40px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.update-panel .update-controls .btn-save-progress:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+.hidden{
+    display: none;
+}
+

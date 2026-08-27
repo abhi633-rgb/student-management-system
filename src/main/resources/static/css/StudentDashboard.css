@@ -1,0 +1,634 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f0f4f8;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    padding: 1.5rem;
+    min-height: 100vh;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Student Profile Header */
+.student-profile-header {
+    background: white;
+    border-radius: 28px;
+    padding: 2rem 2.5rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.profile-info {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2.2rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.profile-details h1 {
+    font-size: 1.8rem;
+    color: #1a202c;
+    margin-bottom: 0.3rem;
+}
+
+.profile-details .student-id {
+    color: #718096;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.profile-details .student-id i {
+    color: #667eea;
+}
+
+.profile-actions {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.profile-actions .btn {
+    padding: 0.6rem 1.5rem;
+    border-radius: 40px;
+    border: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-outline {
+    background: transparent;
+    color: #4a5568;
+    border: 2px solid #e2e8f0;
+}
+
+.btn-outline:hover {
+    background: #f7fafc;
+    border-color: #667eea;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    transition: 0.2s;
+    border: 1px solid #edf2f7;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+.stat-card .stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+}
+
+.stat-card .stat-icon.blue {
+    background: #ebf4ff;
+    color: #3182ce;
+}
+
+.stat-card .stat-icon.green {
+    background: #f0fff4;
+    color: #38a169;
+}
+
+.stat-card .stat-icon.orange {
+    background: #fffaf0;
+    color: #dd6b20;
+}
+
+.stat-card .stat-icon.purple {
+    background: #faf5ff;
+    color: #805ad5;
+}
+
+.stat-card .stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 0.2rem;
+}
+
+.stat-card .stat-label {
+    font-size: 0.85rem;
+    color: #718096;
+    font-weight: 500;
+}
+
+.stat-card .stat-change {
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    display: inline-block;
+    padding: 0.2rem 0.8rem;
+    border-radius: 40px;
+    font-weight: 600;
+}
+
+.stat-change.up {
+    background: #f0fff4;
+    color: #38a169;
+}
+
+.stat-change.down {
+    background: #fff5f5;
+    color: #e53e3e;
+}
+
+/* Main Content Grid */
+.main-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Cards */
+.card {
+    background: white;
+    border-radius: 24px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    border: 1px solid #edf2f7;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+}
+
+.card-header h3 {
+    font-size: 1.1rem;
+    color: #1a202c;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.card-header h3 i {
+    color: #667eea;
+}
+
+.card-header .view-all {
+    color: #667eea;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.card-header .view-all:hover {
+    text-decoration: underline;
+}
+
+/* Course List */
+.course-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #f7fafc;
+}
+
+.course-item:last-child {
+    border-bottom: none;
+}
+
+.course-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.course-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.course-name {
+    font-weight: 500;
+    color: #2d3748;
+}
+
+.course-grade {
+    font-weight: 600;
+    color: #1a202c;
+}
+
+.course-progress {
+    width: 100px;
+    height: 6px;
+    background: #edf2f7;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.course-progress-bar {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.3s;
+}
+
+/* Recent Activity */
+.activity-item {
+    display: flex;
+    gap: 1rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #f7fafc;
+}
+
+.activity-item:last-child {
+    border-bottom: none;
+}
+
+.activity-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: #f7fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #667eea;
+    flex-shrink: 0;
+}
+
+.activity-content {
+    flex: 1;
+}
+
+.activity-content .activity-text {
+    font-size: 0.95rem;
+    color: #2d3748;
+}
+
+.activity-content .activity-time {
+    font-size: 0.8rem;
+    color: #a0aec0;
+}
+
+/* Upcoming Events */
+#Event-div-body {
+    display: flex;
+    flex-direction: column; /* Stacks them top to bottom */
+    width: 100%;
+}
+
+.event-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;    /* Vertically center the date and text */
+    padding: 1.2rem 0;      /* Add space above and below */
+    border-bottom: 1px solid #edf2f7; /* The light gray separator line */
+    gap: 1.2rem;            /* Space between the date badge and the text */
+}
+
+.event-item:last-child {
+    border-bottom: none;    /* Remove the line from the very last item */
+}
+
+.event-date {
+    min-width: 52px;
+    height: 52px;
+    background: #f7fafc;    /* The light gray circle/oval background */
+    border-radius: 16px;    /* Rounded corners, adjust to 50% if you want a perfect circle */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;             /* Remove the previous padding */
+}
+
+.event-date .day {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1a202c;
+    line-height: 1;
+    margin-bottom: 2px;
+}
+
+.event-date .month {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: #a0aec0;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+.event-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0; /* This is a magical CSS trick that stops flex items from overflowing */
+}
+
+.event-details .event-title {
+    font-weight: 600;
+    color: #2d3748;
+    font-size: 0.95rem;
+    white-space: nowrap;  /* Prevents the text from breaking into two lines */
+    overflow: hidden;     /* Hides any text that goes off the edge */
+    text-overflow: ellipsis; /* Adds "..." at the end if the text is too long */
+}
+
+.event-details .event-time {
+    font-size: 0.8rem;
+    color: #a0aec0;
+    display: flex;
+    align-items: center;
+    gap: 6px;               /* Space between the clock icon and the time */
+}
+
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 1.5rem;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-box {
+    background: white;
+    border-radius: 32px;
+    padding: 2.5rem;
+    max-width: 500px;
+    width: 100%;
+    animation: modalSlideIn 0.3s ease;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+@keyframes modalSlideIn {
+    from {
+        transform: translateY(-30px) scale(0.95);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.modal-box .modal-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.modal-box .modal-header i {
+    font-size: 2.5rem;
+    color: #667eea;
+    margin-bottom: 0.5rem;
+}
+
+.modal-box .modal-header h2 {
+    font-size: 1.5rem;
+    color: #1a202c;
+}
+
+.modal-box .modal-header p {
+    color: #718096;
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+}
+
+.modal-box .form-group {
+    margin-bottom: 1.2rem;
+}
+
+.modal-box .form-group label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: #2d3748;
+    margin-bottom: 0.4rem;
+}
+
+.modal-box .form-group input,
+.modal-box .form-group select,
+.modal-box .form-group textarea {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    transition: 0.2s;
+    background: #f7fafc;
+    color: #1a202c;
+    outline: none;
+    font-family: inherit;
+}
+
+.modal-box .form-group input:focus,
+.modal-box .form-group select:focus,
+.modal-box .form-group textarea:focus {
+    border-color: #667eea;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.12);
+}
+
+.modal-box .form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.modal-actions button {
+    flex: 1;
+    padding: 0.8rem;
+    border-radius: 14px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 2px solid transparent;
+}
+
+.modal-actions .cancel-btn {
+    background: #f7fafc;
+    color: #4a5568;
+    border-color: #e2e8f0;
+}
+
+.modal-actions .cancel-btn:hover {
+    background: #edf2f7;
+}
+
+.modal-actions .send-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    box-shadow: 0 8px 16px -6px rgba(102, 126, 234, 0.3);
+}
+
+.modal-actions .send-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px -8px rgba(102, 126, 234, 0.4);
+}
+
+.modal-actions .send-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Activity delete button */
+.delete-activity-btn {
+    background: transparent;
+    border: none;
+    color: #e53e3e;
+    cursor: pointer;
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+    transition: 0.15s;
+    font-size: 0.9rem;
+}
+
+.delete-activity-btn:hover {
+    background: #fff5f5;
+    transform: scale(1.1);
+}
+
+.activity-item {
+    display: flex;
+    gap: 1rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #f7fafc;
+    align-items: flex-start;
+    position: relative;
+}
+
+.activity-item .activity-actions {
+    margin-left: auto;
+    display: flex;
+    gap: 0.3rem;
+}
+.hidden{
+    display: none;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .main-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .student-profile-header {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 1.5rem;
+    }
+
+    .profile-info {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-actions {
+        justify-content: center;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stat-card .stat-number {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .course-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+}
